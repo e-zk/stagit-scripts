@@ -1,0 +1,32 @@
+stagit-scripts
+===============
+companion scripts for stagit. based on the ones written by poptart[^1].
+common variables can be configured in /var/git/config.rc.
+
+stagit-newrepo
+---------------
+create a new repository.
+usage: stagit-newrepo <name> [description] [author]
+
+stagit-gen-index
+-----------------
+generate the index.html using variables from config.rc.
+
+stagit-chdesc
+--------------
+change the description of an existing repository.
+usage: stagit-chdesc <repo> [new_description]
+
+stagit-rm
+----------
+remove a repository.
+usage: stagit-rm <repo>
+
+license
+--------
+licensed under MIT.
+scripts stagit-newrepo, stagit-gen-index, and hooks/post-receive originally
+written by Cale "poptart" Black.
+
+----
+[^1]: https://hosakacorp.net/p/stagit-server.html

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Author: Cale "poptart" Black
+# Modified by: zakaria @ zakaria.org
+# License: MIT
+
+set -eu
+
+. /var/git/config.rc
+
+stagit-index "${GIT_REPOS}"/*.git > "${WWW_HOME}/index.html"

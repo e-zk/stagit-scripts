@@ -1,0 +1,29 @@
+#!/bin/sh
+# Author: Cale "poptart" Black
+# Modified by: zakaria @ zakaria.org
+# License: MIT
+
+set -euf
+
+. /var/git/config.rc
+
+export LC_TYPE="en_US.UTF-8"
+src="$(pwd)"
+name="$(basename "$src")"
+dest="${WWW_HOME}/$(basename "$name" '.git')"
+mkdir -p "$dest"
+cd "$dest" || exit 1
+
+echo "[stagit] building $dest"
+/usr/local/bin/stagit "$src"
+
+echo "[stagit] linking $dest"
+# if a README.html exists use that as the index.html
+# if not use log.html
+if [ -f "README.html" ]; then
+    ln -sf README.html index.html
+else
+    ln -sf log.html index.html
+fi
+ln -sf ../style.css style.css
+ln -sf ../logo.png logo.png

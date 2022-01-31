@@ -1,0 +1,31 @@
+#!/bin/sh
+# Author: zakaria / zakaria.org
+# License: MIT
+# Usage: stagit-chdesc <repo> <new_description>
+
+set -eu
+
+. /var/git/config.rc
+
+log() {
+	printf '%s\n' "$*" >&2
+}
+die() {
+	log "error: $*"
+	printf 'exiting...\n'
+	exit 1
+}
+
+REPO="$1"
+DESC="$2"
+
+if [ -z "$REPO" ]; then
+	die "no repo name provided"
+fi
+if [ -z "$DESC" ]; then
+	die "no new description provided"
+fi
+
+REPO_PATH="${GIT_REPOS}/${REPO}.git"
+
+echo "$DESC" > ${REPO_PATH}/description

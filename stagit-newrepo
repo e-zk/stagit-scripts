@@ -1,0 +1,39 @@
+#!/bin/sh
+# Author: Cale "poptart" Black
+# Modified by: zakaria @ zakaria.org
+# License: MIT
+# Usage: stagit-newrepo <name> [desc] [author]
+
+set -eu
+
+. /var/git/config.rc
+
+log() {
+	printf '%s\n' "$*" >&2
+}
+die() {
+	log "error: $*"
+	printf 'exiting...\n'
+	exit 1
+}
+
+REPO="$1"
+DESC="${2:-$DEFAULT_DESC}"
+OWNER="${3:-$DEFAULT_OWNER}"
+
+if [ -z "$REPO" ]; then
+	die "no repo name given"
+fi
+
+REPO_PATH="${GIT_REPOS}/${REPO}.git"
+
+git init --bare "$REPO_PATH"
+cp "${GIT_HOME}/template/post-receive" "${REPO_PATH}/hooks/post-receive"
+echo "${CLONE_URI}/${REPO}.git" > "${REPO_PATH}/url"
+echo "$OWNER" > "${REPO_PATH}/owner"
+echo "$DESC" > "${REPO_PATH}/description"
+
+chmod u+x "${REPO_PATH}/hooks/post-receive"
+mkdir "${WWW_HOME}/${REPO}"
+
+/usr/local/bin/stagit-gen-index
