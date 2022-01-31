@@ -1,0 +1,16 @@
+# home of the git user
+GIT_HOME="/var/git"
+# directory where bare repos are stored
+GIT_REPOS="${GIT_HOME}/repos"
+# where .html will be generated
+WWW_HOME="/var/www/htdocs/git.example.com"
+
+# clone uri displayed at top of page
+CLONE_URI="_git@git.example.com"
+
+# defaults
+DEFAULT_OWNER="zakaria"
+DEFAULT_DESC=""
+
+# git user
+GIT_USER="_git"
