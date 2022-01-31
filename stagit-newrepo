@@ -22,7 +22,7 @@ DESC="${2:-$DEFAULT_DESC}"
 OWNER="${3:-$DEFAULT_OWNER}"
 
 if [ -z "$REPO" ]; then
-	die "no repo name given"
+	die "no repo name provided"
 fi
 
 REPO_PATH="${GIT_REPOS}/${REPO}.git"

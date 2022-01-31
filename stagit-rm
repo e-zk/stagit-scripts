@@ -1,0 +1,28 @@
+#!/bin/sh
+# Author: zakaria @ zakaria.org
+# License: MIT
+# Usage: stagit-rm <repo>
+
+set -eu
+
+. /var/git/config.rc
+
+log() {
+        printf '%s\n' "$*" >&2
+}
+die() {
+        log "error: $*"
+        printf 'exiting...\n'
+        exit 1
+}
+
+REPO="$1"
+
+if [ -z "$REPO" ]; then
+        die "no repo name provided"
+fi
+
+REPO_PATH="${GIT_REPOS}/${REPO}.git"
+
+rm -rvf "$REPO_PATH"
+rm -rvf "${WWW_HOME}/${REPO}"

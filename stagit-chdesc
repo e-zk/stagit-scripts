@@ -1,5 +1,5 @@
 #!/bin/sh
-# Author: zakaria / zakaria.org
+# Author: zakaria @ zakaria.org
 # License: MIT
 # Usage: stagit-chdesc <repo> <new_description>
 
